@@ -25,7 +25,7 @@
 
 ## Ravn Backend Engineer Challenge
 
-Part 1
+# Part 1
 Inside the repository there are two files, book_store_structure.sql and book_store_data.sql. The first file is has the table structure and the second one was the seeding data. Import both files in your desired db engine to generate tables and populate them with data. The answers to the questions are shown below:
 
 1. Who are the first 10 authors ordered by date_of_birth?
@@ -43,7 +43,7 @@ Inside the repository there are two files, book_store_structure.sql and book_sto
     inner join book_store.authors as a on b.author_id = a.id
     group by a.id limit 10;
 
-Part 2:
+# Part 2:
 To be able to run the application a db server/docker container must be running. Create your own .env following the env-example to be able to generate the correct configuration for TypeORM. Variables can have any key just remember to edit them is the config files. After the .env is setup correctly if u dont have node please install it. After the installation run the following commands to run the migrations files in the project. The files will create the author table and populate it with 13 different authors.
 
 npm run typeorm migration:run
@@ -54,11 +54,11 @@ Once the application is running use the following Curl to get the author data.
 curl --request GET \
   --url 'http://localhost:3000/author?count=4'
 
-Part 3:
+# Part 3:
 
 The caching module was registed in the nestJs context and used in the author controller. To verify that the cache is working as intended do multiple get request the endpoints and check the response time. It will show a gradual decrease as the number of request with the query params are increased eventually hitting a plateu.
 
-Part 4:
+# Part 4:
 Dockerfile was commited to the repository, after this the following scripts need to be run. This scripts should be automated using CI/CD providers such as jenkins. The scripts are 
       1. Login to AWS using the ecrLogin plugin from jenkins.
       2. Build the docker iamge using the following syntax(use dockerImage plugin) "docker build -t nest/ravnbvf --build-arg DB_HOST=XXXXXX --build-arg DB_PORT=XXX --build-arg DB_USERNAME=XXX --build-arg DB_PASSWORD=XXXX --build-arg DB_DATABASE=book_store ."
