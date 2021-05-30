@@ -60,12 +60,12 @@ The caching module was registed in the nestJs context and used in the author con
 
 # Part 4:
 Dockerfile was commited to the repository, after this the following scripts need to be run. This scripts should be automated using CI/CD providers such as jenkins. The scripts are 
-      1. Login to AWS using the ecrLogin plugin from jenkins.
-      2. Build the docker iamge using the following syntax(use dockerImage plugin) "docker build -t nest/ravnbvf --build-arg DB_HOST=XXXXXX --build-arg DB_PORT=XXX --build-arg DB_USERNAME=XXX --build-arg DB_PASSWORD=XXXX --build-arg DB_DATABASE=book_store ."
-      3. After the image is built the image should be pushed to the AWS docker repository so that it can be later pulled in your task declaration.
-      4. Go to the aws console and create an ECS task definition. This is where you will specify which container is going to be used. Which in this case is the one your just updated to the docker registry for your aws account.
-      5. After the task is created we need a service where the task will run which is this case is a cluster.Create a cluster and attach a load balancer to be able to redirect traffic to the url you specify.
-      6. Create a service in the ECS page and use the your task definition from step 4 and if a load balancer is being used select that as well. After this wait for the service status to change to running and you can use the public IP/configured host to access your application.
+1. Login to AWS using the ecrLogin plugin from jenkins.
+2. Build the docker iamge using the following syntax(use dockerImage plugin) "docker build -t nest/ravnbvf --build-arg DB_HOST=XXXXXX --build-arg DB_PORT=XXX --build-arg DB_USERNAME=XXX --build-arg DB_PASSWORD=XXXX --build-arg DB_DATABASE=book_store ."
+3. After the image is built the image should be pushed to the AWS docker repository so that it can be later pulled in your task declaration.
+4. Go to the aws console and create an ECS task definition. This is where you will specify which container is going to be used. Which in this case is the one your just updated to the docker registry for your aws account.
+5. After the task is created we need a service where the task will run which is this case is a cluster.Create a cluster and attach a load balancer to be able to redirect traffic to the url you specify.
+6. Create a service in the ECS page and use the your task definition from step 4 and if a load balancer is being used select that as well. After this wait for the service status to change to running and you can use the public IP/configured host to access your application.
 
 ## Description
 
