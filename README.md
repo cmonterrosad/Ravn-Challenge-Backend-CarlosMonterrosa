@@ -30,27 +30,35 @@ Inside the repository there are two files, book_store_structure.sql and book_sto
 
 1. Who are the first 10 authors ordered by date_of_birth?
 
+    ``` sql
     select * FROM book_store.authors as a order by a.date_of_birth asc limit 10; 
+    ```
 
 2. What is the sales total for the author named “Lorelai Gilmore”?
 
+    ``` sql
     select s.sales,a.name from book_store.books as b
     inner join (select book_id,(item_price*quantity) as sales from book_store.sale_items) as s on s.book_id = b.id
     inner join book_store.authors as a on b.author_id = a.id
     where a.name = 'Lorelai Gilmore';
+    ```
 
 3. What are the top 10 performing authors, ranked by sales revenue?
 
+    ``` sql
     select sum(s.sales),a.name from book_store.books as b
     inner join (select book_id,(item_price*quantity) as sales from book_store.sale_items) as s on s.book_id = b.id
     inner join book_store.authors as a on b.author_id = a.id
     group by a.id limit 10;
+    ```
 
 # Part 2:
 To be able to run the application a db server/docker container must be running. Create your own .env following the env-example to be able to generate the correct configuration for TypeORM. Variables can have any key just remember to edit them is the config files. After the .env is setup correctly if u dont have node please install it. After the installation run the following commands to run the migrations files in the project. The files will create the author table and populate it with 13 different authors.
 
+```bash
 npm run typeorm migration:run
 npm start:dev
+```
 
 Once the application is running use the following Curl to get the author data.
 
