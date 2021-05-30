@@ -1,0 +1,17 @@
+FROM node:10
+WORKDIR /app
+COPY ./package.json ./
+RUN npm install
+COPY . .
+ARG DB_HOST
+ARG DB_PORT
+ARG DB_USERNAME
+ARG DB_PASSWORD
+ARG DB_DATABASE
+ENV HOST=${DB_HOST}
+ENV DB_USERNAME=${DB_USERNAME}
+ENV DB_PASSWORD=${DB_PASSWORD}
+ENV DB_DATABASE=${DB_DATABASE}
+RUN npm run build
+EXPOSE 3000
+CMD npm run typeorm migration:run && npm run start:prod
