@@ -1,8 +1,8 @@
-import { Controller, DefaultValuePipe, Get, ParseIntPipe, Query, UsePipes, ValidationPipe } from '@nestjs/common';
+import { CacheInterceptor, Controller, DefaultValuePipe, Get, ParseIntPipe, Query, UseInterceptors} from '@nestjs/common';
 import { AuthorService } from './author.service';
-import { AuthorCount } from './count.author.validator';
 
 @Controller('author')
+@UseInterceptors(CacheInterceptor)
 export class AuthorController {
 
     constructor(private readonly authorService:AuthorService){}
