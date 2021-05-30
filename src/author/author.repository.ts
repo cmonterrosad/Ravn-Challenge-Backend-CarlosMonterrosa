@@ -6,8 +6,8 @@ export class AuthorRepository extends Repository<authors>{
 
     async getAuthorsWithCount(count:number):Promise<authors[]>{
         const query = this.createQueryBuilder('authors');
-
         query.limit(count);
+        console.log(query)
 
         return query.getMany();
         
