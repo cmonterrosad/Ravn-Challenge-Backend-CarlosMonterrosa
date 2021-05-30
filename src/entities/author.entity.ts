@@ -1,7 +1,7 @@
-import { BaseEntity, BeforeInsert, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
-export class authors extends BaseEntity{
+export class Author extends BaseEntity{
 
     @PrimaryGeneratedColumn('uuid')
     id:String;

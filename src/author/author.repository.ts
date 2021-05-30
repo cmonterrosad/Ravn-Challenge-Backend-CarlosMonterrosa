@@ -1,10 +1,10 @@
 import { EntityRepository, Repository } from "typeorm";
-import { authors } from "../entities/author.entity";
+import { Author } from "../entities/author.entity";
 
-@EntityRepository(authors)
-export class AuthorRepository extends Repository<authors>{
+@EntityRepository(Author)
+export class AuthorRepository extends Repository<Author>{
 
-    async getAuthorsWithCount(count:number):Promise<authors[]>{
+    async getAuthorsWithCount(count:number):Promise<Author[]>{
         const query = this.createQueryBuilder('authors');
         query.limit(count);
         console.log(query)
