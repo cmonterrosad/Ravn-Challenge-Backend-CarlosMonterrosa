@@ -49,7 +49,7 @@ Inside the repository there are two files, book_store_structure.sql and book_sto
     select sum(s.sales) as revenue,a.name from book_store.books as b
     inner join (select book_id,(item_price*quantity) as sales from book_store.sale_items) as s on s.book_id = b.id
     inner join book_store.authors as a on b.author_id = a.id
-    group by a.id limit 10;
+    group by a.id order by revenue desc limit 10;
     ```
 
 # Part 2:
