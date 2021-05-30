@@ -26,7 +26,7 @@
 ## Ravn Backend Engineer Challenge
 
 # Part 1:
-Inside the repository there are two files, book_store_structure.sql and book_store_data.sql. The first file is has the table structure and the second one was the seeding data. Import both files in your desired db engine to generate tables and populate them with data. The answers to the questions are shown below:
+Inside the repository there are two files, book_store_structure.sql and book_store_data.sql. The first file has the table structure and the second one has the seeding data. Import both files in your desired db engine to generate tables and populate them with data. The answers to the questions are shown below:
 
 1. Who are the first 10 authors ordered by date_of_birth?
 
@@ -37,7 +37,7 @@ Inside the repository there are two files, book_store_structure.sql and book_sto
 2. What is the sales total for the author named “Lorelai Gilmore”?
 
     ``` sql
-    select s.sales,a.name from book_store.books as b
+    select sum(s.sales) as totalSales ,a.name from book_store.books as b
     inner join (select book_id,(item_price*quantity) as sales from book_store.sale_items) as s on s.book_id = b.id
     inner join book_store.authors as a on b.author_id = a.id
     where a.name = 'Lorelai Gilmore';
@@ -46,7 +46,7 @@ Inside the repository there are two files, book_store_structure.sql and book_sto
 3. What are the top 10 performing authors, ranked by sales revenue?
 
     ``` sql
-    select sum(s.sales),a.name from book_store.books as b
+    select sum(s.sales) as revenue,a.name from book_store.books as b
     inner join (select book_id,(item_price*quantity) as sales from book_store.sale_items) as s on s.book_id = b.id
     inner join book_store.authors as a on b.author_id = a.id
     group by a.id limit 10;
